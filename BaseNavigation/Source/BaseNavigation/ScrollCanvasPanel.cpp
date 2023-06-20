@@ -17,6 +17,11 @@ TSharedRef<SWidget> UScrollCanvasPanel::RebuildWidget()
 
 FReply UScrollCanvasPanel::OnMouseButtonDown(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent)
 {
+    if (bClickFuncTag)
+    {
+        UE_LOG(LogTemp, Log, TEXT("OnMouseButtonDown bClickFuncTag true"));
+        return FReply::Unhandled();
+    }
     int pointIndex = MouseEvent.GetPointerIndex();
     FVector2D pos = MouseEvent.GetScreenSpacePosition();
     FVector2D local = MyGeometry.LocalToAbsolute(FVector2D(0, 0));
@@ -88,4 +93,36 @@ void UScrollCanvasPanel::OnMouseLeave(const FPointerEvent& MouseEvent)
     FVector2D pos = MouseEvent.GetScreenSpacePosition();
     //UE_LOG(LogTemp, Log, TEXT("OnMouseLeave pointIndex:%d FVector2D: %f %f"), pointIndex, pos.X, pos.Y);
     bNeedMouseMove = false;
+}
+
+void UScrollCanvasPanel::OnClickFunc()
+{
+    UE_LOG(LogTemp, Log, TEXT("OnClickFunc begin"));
+    //UE_LOG(LogTemp, Log, TEXT("OnClickFunc bClickFuncFlag %d selfVisibility %d ChildVisibility %d ESlateVisibility::Visible %d ESlateVisibility::SelfHitTestInvisible %d"), bClickFuncFlag, this->GetVisibility(), clickChild->GetVisibility(), ESlateVisibility::Visible, ESlateVisibility::SelfHitTestInvisible);
+    bClickFuncTag = true;
+    OnClickDown();
+    OnClickUp();
+    bClickFuncTag = false;
+    OnClickUp();
+    UE_LOG(LogTemp, Log, TEXT("OnClickFunc end"));
+}
+
+void UScrollCanvasPanel::OnClickDown()
+{
+    UE_LOG(LogTemp, Log, TEXT("OnClickDown begine"));
+    FSlateApplication& SlateApp = FSlateApplication::Get();
+    const TSharedPtr< FGenericWindow > GenWindow = GEngine->GameViewport->GetWindow()->GetNativeWindow();
+    //FPointerEvent MouseDownEvent(0, SlateApp.CursorPointerIndex, SlateApp.GetCursorPos(), SlateApp.GetLastCursorPos(),
+    //    SlateApp.GetPressedMouseButtons(), EKeys::LeftMouseButton, 0, SlateApp.GetPlatformApplication()->GetModifierKeys());
+    //SlateApp.ProcessMouseButtonDownEvent(GenWindow, MouseDownEvent);
+    SlateApp.OnMouseDown(GenWindow, EMouseButtons::Left);
+    UE_LOG(LogTemp, Log, TEXT("OnClickDown end"));
+}
+
+void UScrollCanvasPanel::OnClickUp()
+{
+    UE_LOG(LogTemp, Log, TEXT("OnClickUp begine"));
+    FSlateApplication& SlateApp = FSlateApplication::Get();
+    SlateApp.OnMouseUp(EMouseButtons::Left);
+    UE_LOG(LogTemp, Log, TEXT("OnClickUp end"));
 }

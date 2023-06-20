@@ -25,6 +25,14 @@ public:
 	UPROPERTY(BlueprintAssignable)
 		FOnScaleEvent onScaleEvent;
 
+	UFUNCTION(BlueprintCallable)
+		void OnClickDown();
+	UFUNCTION(BlueprintCallable)
+		void OnClickUp();
+	UFUNCTION(BlueprintCallable)
+		void OnClickFunc();
+	bool bClickFuncTag = false;
+
 
 	virtual FReply OnMouseButtonDown(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent);
 	virtual FReply OnMouseButtonUp(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent);
