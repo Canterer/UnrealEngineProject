@@ -57,6 +57,10 @@ FReply UScrollCanvasPanel::OnMouseButtonUp(const FGeometry& MyGeometry, const FP
         onClickEvent.Broadcast(pos);
     }else
         UE_LOG(LogTemp, Log, TEXT("OnMouseButtonUp pointIndex:%d distance:%f FVector2D: %f %f FVector2D: %f %f"), pointIndex, FVector2D::Distance(pos, pointerDownPos), pointerDownPos.X, pointerDownPos.Y, pos.X, pos.Y);
+
+    onMoveUpEvent.Broadcast(bFakeEvent);
+    if(bFakeEvent)
+        bFakeEvent = false;
     return FReply::Handled();
 }
 
@@ -122,6 +126,7 @@ void UScrollCanvasPanel::OnClickDown()
 void UScrollCanvasPanel::OnClickUp()
 {
     UE_LOG(LogTemp, Log, TEXT("OnClickUp begine"));
+    bFakeEvent = true;
     FSlateApplication& SlateApp = FSlateApplication::Get();
     SlateApp.OnMouseUp(EMouseButtons::Left);
     UE_LOG(LogTemp, Log, TEXT("OnClickUp end"));

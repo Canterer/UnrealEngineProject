@@ -9,6 +9,7 @@
 /**
  * 
  */
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMoveUpEvent, bool, bFakeEvent);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnClickEvent, FVector2D, pos);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMoveEvent, FVector2D, moveVec);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnScaleEvent, FVector2D, scaleCenter, float, scaleRate, bool, bStart);
@@ -18,6 +19,8 @@ class BASENAVIGATION_API UScrollCanvasPanel : public UCanvasPanel
 	GENERATED_BODY()
 	
 public:
+	UPROPERTY(BlueprintAssignable)
+		FOnMoveUpEvent onMoveUpEvent;
 	UPROPERTY(BlueprintAssignable)
 		FOnClickEvent onClickEvent;
 	UPROPERTY(BlueprintAssignable)
@@ -49,4 +52,5 @@ protected:
 	FVector2D pointerDownPos;
 	TMap<int, FVector2D> pointerPosMap;
 	bool bNeedMouseMove = false;
+	bool bFakeEvent = false;
 };
