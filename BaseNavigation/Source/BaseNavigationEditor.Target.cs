@@ -7,7 +7,8 @@ public class BaseNavigationEditorTarget : TargetRules
 {
 	public BaseNavigationEditorTarget(TargetInfo Target) : base(Target)
 	{
-		Type = TargetType.Editor;
+        bOverrideBuildEnvironment = true;
+        Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V2;
 		ExtraModuleNames.Add("BaseNavigation");
 	}

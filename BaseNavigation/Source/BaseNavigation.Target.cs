@@ -7,7 +7,8 @@ public class BaseNavigationTarget : TargetRules
 {
 	public BaseNavigationTarget(TargetInfo Target) : base(Target)
 	{
-		Type = TargetType.Game;
+        bOverrideBuildEnvironment = true;
+        Type = TargetType.Game;
 		DefaultBuildSettings = BuildSettingsVersion.V2;
 		ExtraModuleNames.Add("BaseNavigation");
 	}

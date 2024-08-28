@@ -8,7 +8,19 @@ public class BaseNavigation : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay", "NavigationSystem", "AIModule", "Niagara" });
+        PublicDependencyModuleNames.AddRange(
+            new string[] { 
+                "Core", 
+                "CoreUObject", 
+                "Engine", 
+                "InputCore", 
+                "HeadMountedDisplay", 
+                "NavigationSystem", 
+                "AIModule", 
+                "Niagara",
+                "ApplicationCore"//ScrollCanvasPanel
+            }
+        );
         PrivateDependencyModuleNames.AddRange(
             new string[] {
                 "Slate",

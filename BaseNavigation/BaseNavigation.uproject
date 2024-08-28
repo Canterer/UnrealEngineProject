@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.0",
+	"EngineAssociation": "{940F0BDA-43CB-82DB-8580-D3A99ED1A79B}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -17,6 +17,22 @@
 			"TargetAllowList": [
 				"Editor"
 			]
+		},
+		{
+			"Name": "UnLua",
+			"Enabled": true
+		},
+		{
+			"Name": "LuaProtobuf",
+			"Enabled": true
+		},
+		{
+			"Name": "LuaRapidjson",
+			"Enabled": true
+		},
+		{
+			"Name": "LuaSocket", 
+			"Enabled": true
 		}
 	]
 }
