@@ -18,6 +18,7 @@ public class BaseNavigation : ModuleRules
                 "NavigationSystem", 
                 "AIModule", 
                 "Niagara",
+                //"UnLua",
                 "ApplicationCore"//ScrollCanvasPanel
             }
         );

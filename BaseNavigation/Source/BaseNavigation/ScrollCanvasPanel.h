@@ -28,14 +28,6 @@ public:
 	UPROPERTY(BlueprintAssignable)
 		FOnScaleEvent onScaleEvent;
 
-	UFUNCTION(BlueprintCallable)
-		void OnClickDown();
-	UFUNCTION(BlueprintCallable)
-		void OnClickUp();
-	UFUNCTION(BlueprintCallable)
-		void OnClickFunc();
-	bool bClickFuncTag = false;
-
 
 	virtual FReply OnMouseButtonDown(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent);
 	virtual FReply OnMouseButtonUp(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent);
@@ -44,6 +36,20 @@ public:
 	virtual FReply OnMouseMove(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent);
 	virtual void OnMouseLeave(const FPointerEvent& MouseEvent);
 
+	UFUNCTION(BlueprintCallable)
+		void OnClickDown(const FPointerEvent& MouseEvent);
+	UFUNCTION(BlueprintCallable)
+		void OnClickUp(const FPointerEvent& MouseEvent);
+	UFUNCTION(BlueprintCallable)
+		void OnClickFunc();
+	UFUNCTION(BlueprintCallable)
+		void OnClickUpFunc();
+
+	UFUNCTION(BlueprintCallable)
+		void OnSeatButtonClick();//座位按钮点击需要清理
+	bool bClickFuncTag = false;
+	UPROPERTY(BlueprintReadWrite)
+		bool bButtonPressMouseMove = false;
 protected:
 	// UWidget interface
 	virtual TSharedRef<SWidget> RebuildWidget() override;
@@ -53,4 +59,10 @@ protected:
 	TMap<int, FVector2D> pointerPosMap;
 	bool bNeedMouseMove = false;
 	bool bFakeEvent = false;
+
+	UPROPERTY(BlueprintReadWrite)
+		FPointerEvent LastMouseEvent;
+	UPROPERTY(BlueprintReadWrite)
+		FPointerEvent LastMouseUpEvent;
+	float TouchTime;
 };

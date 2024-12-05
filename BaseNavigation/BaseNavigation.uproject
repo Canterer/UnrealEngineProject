@@ -7,7 +7,10 @@
 		{
 			"Name": "BaseNavigation",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
 		}
 	],
 	"Plugins": [
@@ -31,7 +34,11 @@
 			"Enabled": true
 		},
 		{
-			"Name": "LuaSocket", 
+			"Name": "LuaSocket",
+			"Enabled": true
+		},
+		{
+			"Name": "HotPatcher",
 			"Enabled": true
 		}
 	]
